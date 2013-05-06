@@ -17,8 +17,8 @@ exports["test1"] = function(test){
             hostname: "localhost",
             username: process.env.SAUCE_USERNAME,
             password: process.env.SAUCE_ACCESS_KEY,
-            desiredCapabilites: {
-                browser: "firefox",
+            desiredCapabilities: {
+                browserName: "firefox",
                 "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER
             }
         };
