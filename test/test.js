@@ -13,7 +13,7 @@ exports["test1"] = function(test){
     var options = {};
     if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
         options = {
-            port: 80,
+            port: process.env.TRAVIS ? 4445 : 80,
             hostname: "ondemand.saucelabs.com",
             username: process.env.SAUCE_USERNAME,
             password: process.env.SAUCE_ACCESS_KEY,
