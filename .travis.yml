@@ -8,3 +8,5 @@ env:
   global:
   - secure: "ExBb7Vu7pQlebGiH7xQqdQBHETaMAhLcHzts7Pr6xD66yuU38QEZNdPqlLxW6+v6rKQZP3JV+mlQHdkDD2C0Fhhdl9mMoCSBfl7GKgmJTB7mr7oVkDUXsQSFxiSr3WDU2hLkvo/+8gL87teAcb0HheK2RvdY4HE3Ei0UnvuJeVI="
   - secure: "PpLVOQ7san3O+vfoNRVmTp8fCoW2vn7PI0Fzga33FjCF1URNRHj+a5fEW+IBmwHcAYH1U4c5hjd7aHG73hR0Mhd3HcB9GY5sTJKwYbP0bemKvXk8WdbJePR/VtLlnYkrILOyCCHGqp7E5lvCWl2eXgc0gDkO8bRdJjhTanFMFS8="
+before_script:
+  - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash

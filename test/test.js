@@ -16,7 +16,11 @@ exports["test1"] = function(test){
             port: 80,
             hostname: "ondemand.saucelabs.com",
             username: process.env.SAUCE_USERNAME,
-            password: process.env.SAUCE_ACCESS_KEY
+            password: process.env.SAUCE_ACCESS_KEY,
+            desiredCapabilites: {
+                browser: "firefox",
+                "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER
+            }
         };
     }
 
