@@ -1,0 +1,788 @@
+{
+    "project": {
+        "name": "sync-webdriver",
+        "description": "synchronous API for web driver",
+        "version": "0.1.0",
+        "url": ""
+    },
+    "files": {
+        "lib\\By.js": {
+            "name": "lib\\By.js",
+            "modules": {},
+            "classes": {
+                "By": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\Session.js": {
+            "name": "lib\\Session.js",
+            "modules": {},
+            "classes": {
+                "Session": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\WebElement.js": {
+            "name": "lib\\WebElement.js",
+            "modules": {},
+            "classes": {
+                "WebElement": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\webdriver.js": {
+            "name": "lib\\webdriver.js",
+            "modules": {},
+            "classes": {
+                "MouseButtons": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "By": {
+            "name": "By",
+            "shortname": "By",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib\\By.js",
+            "line": 1
+        },
+        "Session": {
+            "name": "Session",
+            "shortname": "Session",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib\\Session.js",
+            "line": 40,
+            "description": "Create a new Web Driver session",
+            "async": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "Options for WebDriver session",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "hostname",
+                            "description": "",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "localhost"
+                        },
+                        {
+                            "name": "port",
+                            "description": "Selenium server port",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "4444"
+                        },
+                        {
+                            "name": "path",
+                            "description": "Path to Selenium server REST hub",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "\"/wd/hub\""
+                        },
+                        {
+                            "name": "username",
+                            "description": "Username for Basic authentication",
+                            "type": "String",
+                            "optional": true
+                        },
+                        {
+                            "name": "password",
+                            "description": "Password for Basic authentication",
+                            "type": "String",
+                            "optional": true
+                        }
+                    ]
+                },
+                {
+                    "name": "callback",
+                    "description": "Function context where to run WebDriver commands",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                "\n       new WebDriver.Session(function() {\n          this.go(\"http://google.com\");\n          if (this.title.indexOf(\"Google\") !== -1) {\n               console.log(\"Success!\");\n          }\n       });",
+                "\n       new WebDriver.Session({\n          hostname: \"ondemand.saucelabs.com\",\n          port: 80,\n          username: \"<username>\",\n          password: \"<password>\"\n       }, function() {\n          this.url = \"http://facebook.com\";\n       });"
+            ],
+            "is_constructor": 1
+        },
+        "WebElement": {
+            "name": "WebElement",
+            "shortname": "WebElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib\\WebElement.js",
+            "line": 1,
+            "description": "An object representing an element inside the DOM"
+        },
+        "MouseButtons": {
+            "name": "MouseButtons",
+            "shortname": "MouseButtons",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib\\webdriver.js",
+            "line": 3
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib\\By.js",
+            "line": 5,
+            "description": "Returns an element whose class name contains the search value; compound class names are not permitted.",
+            "itemtype": "property",
+            "name": "className",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 12,
+            "description": "Returns an element matching a CSS selector.",
+            "itemtype": "property",
+            "name": "cssSelector",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 19,
+            "description": "Returns an element whose `ID` attribute matches the search value.",
+            "itemtype": "property",
+            "name": "id",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 26,
+            "description": "Returns an element whose `NAME` attribute matches the search value.",
+            "itemtype": "property",
+            "name": "name",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 33,
+            "description": "Returns an anchor element whose visible text matches the search value.",
+            "itemtype": "property",
+            "name": "linkText",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 40,
+            "description": "Returns an anchor element whose visible text partially matches the search value.",
+            "itemtype": "property",
+            "name": "partialLinkText",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 47,
+            "description": "Returns an element whose tag name matches the search value.",
+            "itemtype": "property",
+            "name": "tagName",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\By.js",
+            "line": 54,
+            "description": "Returns an element matching an XPath expression.",
+            "itemtype": "property",
+            "name": "xpath",
+            "static": 1,
+            "type": "{Strategy}",
+            "class": "By"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 166,
+            "description": "Navigate forwards in the browser history, if possible.",
+            "itemtype": "method",
+            "name": "forward",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 176,
+            "description": "Navigate backwards in the browser history, if possible.",
+            "itemtype": "method",
+            "name": "back",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 186,
+            "description": "Refresh the current page.",
+            "itemtype": "method",
+            "name": "refresh",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 196,
+            "description": "Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.\nThe executed script is assumed to be synchronous and the result of evaluating the script is returned to the client.\n\nArguments may be any JSON-primitive, array, or JSON object. JSON objects that define a WebElement reference will be converted to the corresponding DOM element.\nLikewise, any WebElements in the script result will be returned to the client as WebElement JSON objects.",
+            "itemtype": "method",
+            "name": "execute",
+            "params": [
+                {
+                    "name": "func",
+                    "description": "The function to execute",
+                    "type": "Function"
+                },
+                {
+                    "name": "args",
+                    "description": "The function arguments",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "example": [
+                "\n       var hiddenElement = this.element(\"#hidden\");\n       this.execute(function(element) {\n           element.style.display = \"block\";\n       }, hiddenElement);",
+                "\n       var body = this.execute(function() {\n           return document.body;\n       });\n       this.element(\"body\").equals(body) // true;"
+            ],
+            "return": {
+                "description": "The script result."
+            },
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 227,
+            "description": "Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame.\nThe executed script is assumed to be asynchronous and must signal that is done by invoking the provided callback, which is always provided as the final argument to the function.\nThe value to this callback will be returned to the client.\n\nAsynchronous script commands may not span page loads. If an unload event is fired while waiting for a script result, an error should be returned to the client.\n\nThe script argument defines the script to execute in the form of a function. The function will be invoked with the provided args array and the values may be accessed via the arguments object in the order specified.\nThe final argument will always be a callback function that must be invoked to signal that the script has finished.\n\nArguments may be any JSON-primitive, array, or JSON object. WebElement references will be converted to the corresponding DOM element.\nLikewise, any WebElements in the script result will be returned to the client as WebElement objects.",
+            "itemtype": "method",
+            "name": "executeAsync",
+            "params": [
+                {
+                    "name": "func",
+                    "description": "The function to execute",
+                    "type": "Function"
+                },
+                {
+                    "name": "timeout=1000",
+                    "description": "Set the amount of time, in milliseconds, that asynchronous script permitted to run before they are aborted and a Timeout error is returned to the client.",
+                    "type": "Number"
+                },
+                {
+                    "name": "args",
+                    "description": "The function arguments",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "example": [
+                "\n        var input2 = this.executeAsync(function(done) {\n          window.setTimeout(function() {\n              done(document.getElementById(\"input2\"));\n          }, 200);\n       }, 1000);",
+                "\n       var asyncCalculation = this.executeAsync(function(a, b, done) {\n          window.setTimeout(function() {\n              done(a*b);\n          }, 100);\n       }, 2000, [5, 10]);\n       if (asyncCalculation === 50) {\n           console.log(\"Success! Running asynchronous code synchronously!\");\n       }"
+            ],
+            "return": {
+                "description": "The script result."
+            },
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 274,
+            "description": "Take a screenshot of the current page.",
+            "itemtype": "method",
+            "name": "screenshot",
+            "return": {
+                "description": "The screenshot as a base64 encoded PNG.",
+                "type": "String"
+            },
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 283,
+            "description": "Search for an element on the page, starting from the document root.\nThe located element will be returned as a WebElement object.\nEach locator must return the first matching element located in the DOM.",
+            "itemtype": "method",
+            "name": "element",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The search target",
+                    "type": "String"
+                },
+                {
+                    "name": "using",
+                    "description": "The locator strategy to use.",
+                    "type": "By",
+                    "optional": true,
+                    "optdefault": "By.cssSelector"
+                }
+            ],
+            "return": {
+                "description": "A WebElement object for the located element.",
+                "type": "WebElement"
+            },
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 302,
+            "description": "Search for multiple elements on the page, starting from the document root.\nThe located elements will be returned as an array of WebElement objects.\nElements should be returned in the order located in the DOM.",
+            "itemtype": "method",
+            "name": "elements",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The search target",
+                    "type": "String"
+                },
+                {
+                    "name": "using",
+                    "description": "The locator strategy to use.",
+                    "type": "By",
+                    "optional": true,
+                    "optdefault": "By.cssSelector"
+                }
+            ],
+            "return": {
+                "description": "A list of WebElements for the located elements.",
+                "type": "WebElement[]"
+            },
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 325,
+            "description": "Send a sequence of key strokes to the active element. This command is similar to the send keys command in every aspect except the implicit termination:\nThe modifiers are not released at the end of the call. Rather, the state of the modifier keys is kept between calls, so mouse interactions can be\nperformed while modifier keys are depressed.",
+            "itemtype": "method",
+            "name": "keys",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The keys sequence to be sent.",
+                    "type": "String|String[]"
+                }
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 340,
+            "description": "Navigate to a new URL.",
+            "itemtype": "method",
+            "name": "go",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The URL to navigate to.",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\nthis.go(\"http://google.com\");"
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 353,
+            "description": "Accepts the currently displayed alert dialog. Usually, this is equivalent to clicking on the 'OK' button in the dialog.",
+            "itemtype": "method",
+            "name": "acceptAlert",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 363,
+            "description": "Dismisses the currently displayed alert dialog. For confirm() and prompt() dialogs, this is equivalent to clicking the 'Cancel' button.\nFor alert() dialogs, this is equivalent to clicking the 'OK' button.",
+            "itemtype": "method",
+            "name": "dismissAlert",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 374,
+            "description": "Move the mouse by an offset of the specificed element. If no element is specified, the move is relative to the current mouse cursor.\nIf an element is provided but no offset, the mouse will be moved to the center of the element. If the element is not visible, it will be scrolled into view.\nFor alert() dialogs, this is equivalent to clicking the 'OK' button.",
+            "itemtype": "method",
+            "name": "moveMouse",
+            "params": [
+                {
+                    "name": "xoffset",
+                    "description": "X offset to move to, relative to the top-left corner of the element. If not specified, the mouse will move to the middle of the element.",
+                    "type": "Number"
+                },
+                {
+                    "name": "yoffset",
+                    "description": "Y offset to move to, relative to the top-left corner of the element. If not specified, the mouse will move to the middle of the element.",
+                    "type": "Number"
+                },
+                {
+                    "name": "element",
+                    "description": "WebElement to use for offset. If not specified or is null, the offset is relative to current position of the mouse.",
+                    "type": "WebElement",
+                    "optional": true,
+                    "optdefault": "null"
+                }
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 396,
+            "description": "Click any mouse button (at the coordinates set by the last moveto command).\nNote that calling this command after calling buttondown and before calling button up (or any out-of-order interactions sequence) will yield undefined behaviour).",
+            "itemtype": "method",
+            "name": "click",
+            "params": [
+                {
+                    "name": "button",
+                    "description": "Which button, enum: {LEFT = 0, MIDDLE = 1 , RIGHT = 2}. Defaults to the left mouse button if not specified.",
+                    "type": "MouseButtons",
+                    "optional": true,
+                    "optdefault": "MouseButtons.LEFT"
+                }
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 408,
+            "description": "Click and hold the left mouse button (at the coordinates set by the last moveto command).\nNote that the next mouse-related command that should follow is buttonup . Any other mouse command (such as click or another call to buttondown) will yield undefined behaviour.",
+            "itemtype": "method",
+            "name": "buttonDown",
+            "params": [
+                {
+                    "name": "button",
+                    "description": "Which button, enum: {LEFT = 0, MIDDLE = 1 , RIGHT = 2}. Defaults to the left mouse button if not specified.",
+                    "type": "MouseButtons",
+                    "optional": true,
+                    "optdefault": "MouseButtons.LEFT"
+                }
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 420,
+            "description": "Releases the mouse button previously held (where the mouse is currently at).\nMust be called once for every buttondown command issued. See the note in click and buttondown about implications of out-of-order commands.",
+            "itemtype": "method",
+            "name": "buttonUp",
+            "params": [
+                {
+                    "name": "button",
+                    "description": "Which button, enum: {LEFT = 0, MIDDLE = 1 , RIGHT = 2}. Defaults to the left mouse button if not specified.",
+                    "type": "MouseButtons",
+                    "optional": true,
+                    "optdefault": "MouseButtons.LEFT"
+                }
+            ],
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 432,
+            "description": "Double-clicks at the current mouse coordinates (set by moveto).",
+            "itemtype": "method",
+            "name": "doubleClick",
+            "chainable": 1,
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 443,
+            "description": "Get or set the text of the currently displayed JavaScript `alert()`, `confirm()`, or `prompt()` dialog.",
+            "itemtype": "attribute",
+            "name": "alertText",
+            "type": "String",
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 457,
+            "description": "Get the current page title.",
+            "itemtype": "attribute",
+            "name": "title",
+            "readonly": "",
+            "type": "String",
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 468,
+            "description": "Get or set the url for the current window.",
+            "itemtype": "attribute",
+            "name": "url",
+            "type": "String",
+            "class": "Session"
+        },
+        {
+            "file": "lib\\Session.js",
+            "line": 481,
+            "description": "Get or set the current browser orientation. The orientation should be specified as defined as `LANDSCAPE` or `PORTRAIT`.",
+            "itemtype": "attribute",
+            "name": "orientation",
+            "type": "String",
+            "class": "Session"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 12,
+            "description": "Determine if an element is currently displayed.",
+            "itemtype": "attribute",
+            "name": "displayed",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 23,
+            "description": "Determine if an element is currently enabled.",
+            "itemtype": "attribute",
+            "name": "enabled",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 34,
+            "description": "Determine an element's height in pixels.",
+            "itemtype": "attribute",
+            "name": "height",
+            "readonly": "",
+            "type": "Number",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 45,
+            "description": "Determine an element's tag name.",
+            "itemtype": "attribute",
+            "name": "name",
+            "readonly": "",
+            "type": "String",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 56,
+            "description": "Determine if an `OPTION` element, or an `INPUT` element of type checkbox or radiobutton is currently selected.",
+            "itemtype": "attribute",
+            "name": "selected",
+            "readonly": "",
+            "type": "Boolean",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 67,
+            "description": "Returns the visible text for the element.",
+            "itemtype": "attribute",
+            "name": "text",
+            "readonly": "",
+            "type": "String",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 78,
+            "description": "Get or set the value of the element.",
+            "itemtype": "attribute",
+            "name": "text",
+            "type": "String",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 91,
+            "description": "Determine an element's width in pixels.",
+            "itemtype": "attribute",
+            "name": "width",
+            "readonly": "",
+            "type": "Number",
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 116,
+            "description": "Clear a `TEXTAREA` or text `INPUT` element's value.",
+            "itemtype": "method",
+            "name": "clear",
+            "chainable": 1,
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 126,
+            "description": "Click on an element.",
+            "itemtype": "method",
+            "name": "click",
+            "chainable": 1,
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 136,
+            "description": "Submit a `FORM` element. The submit command may also be applied to any element that is a descendant of a `FORM` element.",
+            "itemtype": "method",
+            "name": "submit",
+            "chainable": 1,
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 146,
+            "description": "Send a sequence of key strokes to an element.",
+            "itemtype": "method",
+            "name": "val",
+            "chainable": 1,
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 158,
+            "description": "Get the value of an element's attribute.",
+            "itemtype": "method",
+            "name": "attr",
+            "params": [
+                {
+                    "name": "attributeName",
+                    "description": "Attribute name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The value of the attribute, or `null` if it is not set on the element.",
+                "type": "String|null"
+            },
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 168,
+            "description": "Query the value of an element's computed CSS property.",
+            "itemtype": "method",
+            "name": "css",
+            "params": [
+                {
+                    "name": "propertyName",
+                    "description": "CSS property name.\nThe CSS property to query should be specified using the CSS property name, not the JavaScript property name (e.g. background-color instead of backgroundColor).",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The value of the specified CSS property.",
+                "type": "String"
+            },
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 179,
+            "description": "Test if the elements refer to the same DOM element.",
+            "itemtype": "method",
+            "name": "equals",
+            "params": [
+                {
+                    "name": "other",
+                    "description": "The other element to match with",
+                    "type": "WebElement"
+                }
+            ],
+            "return": {
+                "description": "Whether the two IDs refer to the same element.",
+                "type": "Boolean"
+            },
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 189,
+            "description": "Determine an element's location on the page. The point (0, 0) refers to the upper-left corner of the page.\nThe element's coordinates are returned as a JSON object with x and y properties.",
+            "itemtype": "method",
+            "name": "offset",
+            "return": {
+                "description": "The X and Y coordinates for the element on the page.",
+                "type": "X:number, y:number"
+            },
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\WebElement.js",
+            "line": 199,
+            "description": "Determine an element's size in pixels. The size will be returned as a JSON object with width and height properties.",
+            "itemtype": "method",
+            "name": "size",
+            "return": {
+                "description": "The width and height of the element, in pixels.",
+                "type": "Width:number, height:number"
+            },
+            "class": "WebElement"
+        },
+        {
+            "file": "lib\\webdriver.js",
+            "line": 7,
+            "itemtype": "property",
+            "name": "LEFT",
+            "static": 1,
+            "type": "{Number}",
+            "class": "MouseButtons"
+        },
+        {
+            "file": "lib\\webdriver.js",
+            "line": 13,
+            "itemtype": "property",
+            "name": "MIDDLE",
+            "static": 1,
+            "type": "{Number}",
+            "class": "MouseButtons"
+        },
+        {
+            "file": "lib\\webdriver.js",
+            "line": 19,
+            "itemtype": "property",
+            "name": "RIGHT",
+            "static": 1,
+            "type": "{Number}",
+            "class": "MouseButtons"
+        }
+    ],
+    "warnings": []
+}

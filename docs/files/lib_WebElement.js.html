@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib\WebElement.js - sync-webdriver</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="sync-webdriver"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/By.html">By</a></li>
+            
+                <li><a href="../classes/MouseButtons.html">MouseButtons</a></li>
+            
+                <li><a href="../classes/Session.html">Session</a></li>
+            
+                <li><a href="../classes/WebElement.html">WebElement</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib\WebElement.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ An object representing an element inside the DOM
+
+ @class WebElement
+ **/
+function WebElement(host, element) {
+    this.host = host;
+    this.element = element;
+}
+
+Object.defineProperties(WebElement.prototype, {
+    /**
+     Determine if an element is currently displayed.
+     @attribute displayed
+     @readOnly
+     @type Boolean
+     **/
+    &quot;displayed&quot;: {
+        get: function() {
+            return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/displayed&quot;));
+        }
+    },
+    /**
+     Determine if an element is currently enabled.
+     @attribute enabled
+     @readOnly
+     @type Boolean
+     **/
+    &quot;enabled&quot;: {
+        get: function() {
+            return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/enabled&quot;));
+        }
+    },
+    /**
+     Determine an element&#x27;s height in pixels.
+     @attribute height
+     @readOnly
+     @type Number
+     **/
+    height: {
+        get: function() {
+            return this.size().height;
+        }
+    },
+    /**
+     Determine an element&#x27;s tag name.
+     @attribute name
+     @readOnly
+     @type String
+     **/
+    &quot;name&quot;: {
+        get: function() {
+            return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/name&quot;));
+        }
+    },
+    /**
+     Determine if an &#x60;OPTION&#x60; element, or an &#x60;INPUT&#x60; element of type checkbox or radiobutton is currently selected.
+     @attribute selected
+     @readOnly
+     @type Boolean
+     **/
+    &quot;selected&quot;: {
+        get: function() {
+            return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/selected&quot;));
+        }
+    },
+    /**
+     Returns the visible text for the element.
+     @attribute text
+     @readOnly
+     @type String
+     **/
+    &quot;text&quot;: {
+        get: function() {
+            return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/text&quot;));
+        }
+    },
+    /**
+     Get or set the value of the element.
+     @attribute text
+     @type String
+     **/
+    value: {
+        set: function(value) {
+            this.val(value);
+        },
+        get: function() {
+            return this.attr(&quot;value&quot;);
+        }
+    },
+    /**
+     Determine an element&#x27;s width in pixels.
+     @attribute width
+     @readOnly
+     @type Number
+     **/
+    width: {
+        get: function() {
+            return this.size().width;
+        }
+    }
+});
+
+WebElement.prototype.POST = function() {
+    var args = [].slice.call(arguments, 0);
+    args[0] = args[0].replace(&quot;:id&quot;, this.element.ELEMENT);
+    return this.host.POST.apply(this.host, args);
+};
+
+WebElement.prototype.GET = function() {
+    var args = [].slice.call(arguments, 0);
+    args[0] = args[0].replace(&quot;:id&quot;, this.element.ELEMENT);
+    return this.host.GET.apply(this.host, args);
+};
+
+/**
+ Clear a &#x60;TEXTAREA&#x60; or text &#x60;INPUT&#x60; element&#x27;s value.
+ @method clear
+ @chainable
+ */
+WebElement.prototype.clear = function() {
+    this.POST(&quot;/session/:sessionId/element/:id/clear&quot;);
+    return this;
+};
+
+/**
+ Click on an element.
+ @method click
+ @chainable
+ */
+WebElement.prototype.click = function() {
+    this.POST(&quot;/session/:sessionId/element/:id/click&quot;);
+    return this;
+};
+
+/**
+ Submit a &#x60;FORM&#x60; element. The submit command may also be applied to any element that is a descendant of a &#x60;FORM&#x60; element.
+ @method submit
+ @chainable
+ */
+WebElement.prototype.submit = function() {
+    this.POST(&quot;/session/:sessionId/element/:id/submit&quot;);
+    return this;
+};
+
+/**
+ Send a sequence of key strokes to an element.
+ @method val
+ @chainable
+ */
+WebElement.prototype.val = function(value) {
+    this.POST(&quot;/session/:sessionId/element/:id/value&quot;, {
+        value: Array.isArray(value) ? value : value.split(&#x27;&#x27;)
+    });
+    return this;
+};
+
+/**
+ Get the value of an element&#x27;s attribute.
+ @method attr
+ @param {String} attributeName Attribute name
+ @return {String|null} The value of the attribute, or &#x60;null&#x60; if it is not set on the element.
+ */
+WebElement.prototype.attr = function(attributeName) {
+    return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/attribute/:name&quot;.replace(&quot;:name&quot;, attributeName)));
+};
+
+/**
+ Query the value of an element&#x27;s computed CSS property.
+ @method css
+ @param {String} propertyName CSS property name.
+ The CSS property to query should be specified using the CSS property name, not the JavaScript property name (e.g. background-color instead of backgroundColor).
+ @return {String} The value of the specified CSS property.
+ */
+WebElement.prototype.css = function(propertyName) {
+    return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/css/:propertyName&quot;.replace(&quot;:propertyName&quot;, propertyName)));
+};
+
+/**
+ Test if the elements refer to the same DOM element.
+ @method equals
+ @param {WebElement} other The other element to match with
+ @return {Boolean} Whether the two IDs refer to the same element.
+ */
+WebElement.prototype.equals = function(other) {
+    return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/equals/:other&quot;.replace(&quot;:other&quot;, other.element.ELEMENT)));
+};
+
+/**
+ Determine an element&#x27;s location on the page. The point (0, 0) refers to the upper-left corner of the page.
+ The element&#x27;s coordinates are returned as a JSON object with x and y properties.
+ @method offset
+ @return {x:number, y:number} The X and Y coordinates for the element on the page.
+ */
+WebElement.prototype.offset = function() {
+    return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/location&quot;));
+};
+
+/**
+ Determine an element&#x27;s size in pixels. The size will be returned as a JSON object with width and height properties.
+ @method size
+ @return {width:number, height:number} The width and height of the element, in pixels.
+ */
+WebElement.prototype.size = function() {
+    return this.host.parseResponse(this.GET(&quot;/session/:sessionId/element/:id/size&quot;));
+};
+
+exports.WebElement = WebElement;
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
