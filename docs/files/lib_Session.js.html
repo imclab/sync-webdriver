@@ -93,6 +93,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 var By = require(&quot;./By&quot;).By;
+var Errors = require(&quot;./Errors&quot;).Errors;
 var WebElement = require(&quot;./WebElement&quot;).WebElement;
 var Future = require(&#x27;fibers/future&#x27;), wait = Future.wait;
 var http = require(&quot;http&quot;);
@@ -174,16 +175,31 @@ var Session = function(options, callback) {
     this.sessionId = null;
     this.username = options.username;
     this.password = options.password;
-    this.setup();
-    callback.call(this);
-    this.close();
-}.future();
+    this.desiredCapabilities = options.desiredCapabilities || {
+        browserName: &quot;firefox&quot;
+    };
+
+    var future = function() {
+        this.setup();
+        try {
+            callback.call(this);
+        } catch(e) {
+            this.close();
+            throw e;
+        }
+        this.close();
+    }.bind(this).future();
+
+    future().resolve(function(err) {
+        if (err) {
+            throw err;
+        }
+    });
+};
 
 Session.prototype.setup = function() {
     var response = this.POST(&quot;/session&quot;, {
-        desiredCapabilities: {
-            browserName: &quot;firefox&quot;
-        }
+        desiredCapabilities: this.desiredCapabilities
     }, (this.username &amp;&amp; this.password) ? this.username + &quot;:&quot; + this.password : null);
     if (response.status === 302 || response.status === 303) {
         this.sessionId = response.headers.location.substring(response.headers.location.lastIndexOf(&quot;/&quot;)+1);
@@ -244,7 +260,20 @@ Session.prototype.DELETE = function(path, auth) {
 Session.prototype.parseResponse = function(data) {
     var response = JSON.parse(data.data);
     if (response.status !== 0) {
-        console.log(&quot;Error code&quot;, response.status);
+        switch (response.status) {
+            case 6:
+                throw new Errors.NoSuchDriver();
+                break;
+            case 7:
+                throw new Errors.NoSuchElement();
+                break;
+            case 8:
+                throw new Errors.NoSuchFrame();
+                break;
+            default:
+                throw new Error(&quot;Error code &quot; + response.status);
+
+        }
     }
 
     return response.value;
@@ -389,7 +418,6 @@ Session.prototype.element = function(value, using) {
         using: using,
         value: value
     });
-
     return new WebElement(this, this.parseResponse(response));
 };
 
