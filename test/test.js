@@ -25,7 +25,7 @@ exports["test1"] = function(test){
     }
 
     new WebDriver.Session(options, function() {
-        test.expect(18);
+        test.expect(19);
         var url = "http://localhost:" + port + "/testpage1.html";
         this.url = url;
         test.equal(this.url, url, "Get page URL");
@@ -79,6 +79,11 @@ exports["test1"] = function(test){
         var offset = textarea1.offset();
         test.equal(textarea1.name, "textarea", "Get element node name");
         test.equal(offset.x === 0 && offset.y > 0, true, "Get element location");
+
+        var self = this;
+        test.throws(function() {
+           self.element("#notfound");
+        }, WebDriver.Errors.NoSuchElement, "Element not found should throw NoSuchElement");
 
         this.close();
         test.done();
