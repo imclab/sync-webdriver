@@ -17,26 +17,26 @@ Installation
 Example
 -------
 
-      new WebDriver.Session(function() {
-            // web driver commands run synchronously here
+    new WebDriver.Session(function() {
+        // web driver commands run synchronously here
 
-            this.go("http://google.com");
-            if (this.title.indexOf("Google") !== -1) {
-                 console.log("Success!");
-            }
+        this.go("http://google.com");
+        if (this.title.indexOf("Google") !== -1) {
+            console.log("Success!");
+        }
 
-            this.element("input[type='submit']").click();
+        this.element("input[type='submit']").click();
 
-            var asyncCalculation = this.executeAsync(function(a, b, done) {
-                  window.setTimeout(function() {
-                      done(a*b);
-                  }, 100);
-            }, 2000, [5, 10]);
+        var asyncCalculation = this.executeAsync(function(a, b, done) {
+            window.setTimeout(function() {
+                done(a*b);
+            }, 100);
+        }, 2000, [5, 10]);
 
-            if (asyncCalculation === 50) {
-                 console.log("Success! Running asynchronous code synchronously!");
-            }
-      });
+        if (asyncCalculation === 50) {
+            console.log("Success! Running asynchronous code synchronously!");
+        }
+    });
 
 
 Documentation
