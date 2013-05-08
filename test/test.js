@@ -25,7 +25,7 @@ exports["test1"] = function(test){
     }
 
     new WebDriver.Session(options, function() {
-        test.expect(19);
+        test.expect(20);
         var url = "http://localhost:" + port + "/testpage1.html";
         this.url = url;
         test.equal(this.url, url, "Get page URL");
@@ -84,6 +84,17 @@ exports["test1"] = function(test){
         test.throws(function() {
            self.element("#notfound");
         }, WebDriver.Errors.NoSuchElement, "Element not found should throw NoSuchElement");
+
+        var div = this.execute(function() {
+            var div = document.createElement("div");
+            div.id = "waitelement";
+            window.setTimeout(function() {
+                document.body.appendChild(div);
+            }, 2000);
+            return div;
+        });
+
+        test.equal(this.element("#waitelement", 5000).equals(div), true, "Implicit wait for element");
 
         this.close();
         test.done();

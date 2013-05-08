@@ -1,6 +1,6 @@
 {
   "name": "sync-webdriver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "synchronous API for web driver",
   "main": "lib/webdriver.js",
   "scripts": {

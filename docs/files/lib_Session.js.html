@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 0.1.0</em>
+            <em>API Docs for: 0.1.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -175,6 +175,7 @@ var Session = function(options, callback) {
     this.sessionId = null;
     this.username = options.username;
     this.password = options.password;
+    this.implicitWait = 0;
     this.desiredCapabilities = options.desiredCapabilities || {
         browserName: &quot;firefox&quot;
     };
@@ -409,10 +410,19 @@ Session.prototype.screenshot = function() {
  Each locator must return the first matching element located in the DOM.
  @method element
  @param {String} value The search target
+ @param {Number} [wait=0] Timeout for waiting to appear in milliseconds. 0 for no wait.
  @param {By} [using=By.cssSelector] The locator strategy to use.
  @return {WebElement} A WebElement object for the located element.
  */
-Session.prototype.element = function(value, using) {
+Session.prototype.element = function(value, wait, using) {
+    wait = wait || 0;
+    if (wait !== this.implicitWait) {
+        this.implicitWait = wait;
+        this.POST(&quot;/session/:sessionId/timeouts/implicit_wait&quot;, {
+            ms: wait
+        });
+    }
+
     using = using || By.cssSelector;
     var response = this.POST(&quot;/session/:sessionId/element&quot;, {
         using: using,
@@ -427,10 +437,19 @@ Session.prototype.element = function(value, using) {
  Elements should be returned in the order located in the DOM.
  @method elements
  @param {String} value The search target
+ @param {Number} [wait=0] Timeout for waiting to appear in milliseconds. 0 for no wait.
  @param {By} [using=By.cssSelector] The locator strategy to use.
  @return {WebElement[]} A list of WebElements for the located elements.
  */
-Session.prototype.elements = function(value, using) {
+Session.prototype.elements = function(value, wait, using) {
+    wait = wait || 0;
+    if (wait !== this.implicitWait) {
+        this.implicitWait = wait;
+        this.POST(&quot;/session/:sessionId/timeouts/implicit_wait&quot;, {
+            ms: wait
+        });
+    }
+
     using = using || By.cssSelector;
     var response = this.POST(&quot;/session/:sessionId/elements&quot;, {
         using: using,
